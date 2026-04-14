@@ -20,17 +20,17 @@ A minimal app that fetches JSON from a public API and renders it in a list — s
 
 ### Steps
 
-1. **Set up the Android Studio project**
-   - Create a new Empty Compose Activity project
-   - Walk through the project structure: `build.gradle.kts` (project + module level), `AndroidManifest.xml`, `src/main/`, `res/`
-   - Run the default app on the Android emulator
-   - Note the parallels and differences with Xcode's project structure
+1. **Set up the Android Studio project** ✅
+   - [x] Create a new Empty Compose Activity project (created at repo root; package `com.davecade.composelistapp`, `compileSdk=34`, `minSdk=24`, `targetSdk=34`)
+   - [x] Walk through the project structure: `build.gradle.kts` (project + module level), `AndroidManifest.xml`, `src/main/`, `res/`
+   - [x] Run the default app on the Android emulator
+   - [x] Note the parallels and differences with Xcode's project structure _(substituted RN/JS analogies instead, since iOS is unfamiliar)_
 
-2. **Build the data layer**
-   - Use the same public API as the iOS project (easier to compare the two experiences)
-   - Define a Kotlin `data class` for the response model
-   - Write a suspend function to fetch and parse the JSON
-   - Add the `INTERNET` permission to `AndroidManifest.xml`
+2. **Build the data layer** ⬅️ **RESUME HERE**
+   - [ ] Pick a public API to fetch from (candidates discussed: JSONPlaceholder posts, PokéAPI, Dog CEO — recommended starting with JSONPlaceholder `https://jsonplaceholder.typicode.com/posts`)
+   - [ ] Define a Kotlin `data class` for the response model
+   - [ ] Write a suspend function to fetch and parse the JSON
+   - [ ] Add the `INTERNET` permission to `AndroidManifest.xml`
 
 3. **Build the UI**
    - Create a `LazyColumn` composable that displays each item
