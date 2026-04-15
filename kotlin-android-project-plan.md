@@ -26,11 +26,20 @@ A minimal app that fetches JSON from a public API and renders it in a list — s
    - [x] Run the default app on the Android emulator
    - [x] Note the parallels and differences with Xcode's project structure _(substituted RN/JS analogies instead, since iOS is unfamiliar)_
 
-2. **Build the data layer** ⬅️ **RESUME HERE**
-   - [ ] Pick a public API to fetch from (candidates discussed: JSONPlaceholder posts, PokéAPI, Dog CEO — recommended starting with JSONPlaceholder `https://jsonplaceholder.typicode.com/posts`)
-   - [ ] Define a Kotlin `data class` for the response model
-   - [ ] Write a suspend function to fetch and parse the JSON
-   - [ ] Add the `INTERNET` permission to `AndroidManifest.xml`
+2. **Build the data layer**
+   - [x] Pick a public API to fetch from — chose JSONPlaceholder `https://jsonplaceholder.typicode.com/posts` (fields: `userId`, `id`, `title`, `body`)
+   - [x] Decide on libraries — `kotlinx.serialization` for JSON parsing + `HttpURLConnection` (JDK built-in) for networking + `kotlinx-coroutines-android` for `suspend`/dispatchers
+   - [x] Wire up Gradle dependencies
+     - [x] Add `coroutines` and `kotlinxSerialization` version entries to `gradle/libs.versions.toml` `[versions]` block
+     - [x] Add `kotlinx-coroutines-android` and `kotlinx-serialization-json` library aliases to `[libraries]` block
+     - [x] Add `kotlin-serialization` plugin alias to `[plugins]` block (version locked to Kotlin compiler version)
+     - [x] Declare `kotlin-serialization` plugin in root `build.gradle.kts` with `apply false`
+     - [x] Apply `kotlin-serialization` plugin in `app/build.gradle.kts`
+     - [x] Add `implementation(libs.kotlinx.coroutines.android)` and `implementation(libs.kotlinx.serialization.json)` to `app/build.gradle.kts` `dependencies` block
+   - [x] Add `INTERNET` permission to `AndroidManifest.xml` (as `<uses-permission>` sibling of `<application>`)
+   - [ ] Create `data/` sub-package under `com.davecade.composelistapp` ⬅️ **RESUME HERE**
+   - [ ] Define a Kotlin `data class Post` for the response model (annotated with `@Serializable`, fields: `userId: Int`, `id: Int`, `title: String`, `body: String`) in `data/Post.kt`
+   - [ ] Write a `suspend fun fetchPosts(): List<Post>` in `data/PostsApi.kt` using `HttpURLConnection` + `Json.decodeFromString`, running on `Dispatchers.IO` via `withContext`
 
 3. **Build the UI**
    - Create a `LazyColumn` composable that displays each item
